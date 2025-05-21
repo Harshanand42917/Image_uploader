@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Uploader</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: url("https://images.unsplash.com/photo-1552083375-1447ce886485?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww")
+          no-repeat center center fixed;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px; /* space between form and image */
+        flex-wrap: wrap;
+      }
+
+      #uploaded-image-container {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        max-width: 340px;
+        animation: fadeIn 1s ease;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 40px 30px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        animation: fadeIn 1s ease;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 25px;
+        color: #fff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      input[type="file"] {
+        padding: 12px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 2px dashed #fff;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="file"]::file-selector-button {
+        background: #fff;
+        color: #333;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      input[type="file"]:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      input[type="submit"] {
+        padding: 12px;
+        width: 100%;
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 12px rgba(255, 75, 43, 0.5);
+      }
+
+      #uploaded-image-container {
+        margin-top: 35px;
+        text-align: center;
+        color: white;
+      }
+
+      #uploaded-image-container h2 {
+        margin-bottom: 15px;
+      }
+
+      img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        border-radius: 12px;
+        border: 2px solid #fff;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Upload Your Image</h1>
+        <form action="/uploads" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="file" name="file" id="file-input" required />
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Upload" />
+          </div>
+        </form>
+      </div>
+
+      <div id="uploaded-image-container">
+        <% if (url) { %>
+        <h2>File Uploaded Successfully</h2>
+        <img src="<%= url %>" alt="Uploaded Image" />
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

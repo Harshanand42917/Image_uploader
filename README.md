@@ -26,15 +26,4 @@ A Node.js backend project that allows users to upload images via a web interface
 
 ---
 
-## 📁 Project Structure
-Img_upload_proj/
-├── node_modules/
-├── public/ # Static files (CSS/images)
-├── views/ # EJS templates
-│ └── index.ejs
-├── server.js # Main server file
-├── .env # Environment variables (Cloudinary keys etc.)
-├── package.json
-└── README.md
-
 
